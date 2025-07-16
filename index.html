@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 7-Day Interview Prep Dashboard</title>
+<style>
+body {font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); margin: 0; padding: 20px; color: #fff;}
+h1 {text-align: center; font-size: 2.5em; margin-bottom: 20px; color: #f9d342; text-shadow: 2px 2px 5px rgba(0,0,0,0.5);}
+.card {background: rgba(255,255,255,0.08); padding: 20px; margin: 15px auto; border-radius: 15px; max-width: 800px; backdrop-filter: blur(10px); box-shadow: 0 8px 18px rgba(0,0,0,0.3); transition: transform 0.3s, box-shadow 0.3s;}
+.card:hover {transform: translateY(-6px); box-shadow: 0 12px 22px rgba(0,0,0,0.5);}
+h2 {font-size: 1.8em; color: #ffdd57; text-align: center; margin-bottom: 10px;}
+h3 {color: #ffeeaa; font-size: 1.2em; margin-top: 15px;}
+ul {list-style-type: disc; padding-left: 20px; font-size: 1.05em;}
+li {margin: 8px 0;}
+a {color: #90cdf4; text-decoration: none; font-weight: 600;}
+a:hover {color: #63b3ed; text-decoration: underline;}
+footer {text-align: center; margin-top: 25px; font-size: 0.85em; color: #aaa;}
+</style>
+</head>
+<body>
+<h1>🔥 7-Day Interview Prep Dashboard</h1>
+<div id="planner"></div>
+<footer>Build Consistency. Conquer Placements. 🚀</footer>
+<script>
+const days = [
+  {
+    day: "Day 1: HTML/CSS/JS + Arrays",
+    videos: [
+      ["HTML Crash Course","https://www.youtube.com/watch?v=UB1O30fR-EE"],
+      ["CSS Crash Course","https://www.youtube.com/watch?v=yfoY53QXEnI"],
+      ["JavaScript Crash Course","https://www.youtube.com/watch?v=hdI2bqOjy3c"]
+    ],
+    questions: [
+      ["Two Sum","https://leetcode.com/problems/two-sum/"],
+      ["Valid Palindrome","https://leetcode.com/problems/valid-palindrome/"],
+      ["Valid Parentheses","https://leetcode.com/problems/valid-parentheses/"],
+      ["Implement Queue using Stacks","https://leetcode.com/problems/implement-queue-using-stacks/"],
+      ["Merge Two Sorted Lists","https://leetcode.com/problems/merge-two-sorted-lists/"],
+      ["Climbing Stairs","https://leetcode.com/problems/climbing-stairs/"]
+    ]
+  },
+  {
+    day: "Day 2: Tailwind & React + Strings",
+    videos: [
+      ["Tailwind CSS Crash","https://www.youtube.com/watch?v=dFgzHOX84xQ"],
+      ["React Crash Course","https://www.youtube.com/watch?v=w7ejDZ8SWv8"]
+    ],
+    questions: [
+      ["Longest Substring Without Repeating Characters","https://leetcode.com/problems/longest-substring-without-repeating-characters/"],
+      ["Longest Palindromic Substring","https://leetcode.com/problems/longest-palindromic-substring/"],
+      ["Min Stack","https://leetcode.com/problems/min-stack/"],
+      ["Design Circular Queue","https://leetcode.com/problems/design-circular-queue/"],
+      ["Linked List Cycle","https://leetcode.com/problems/linked-list-cycle/"],
+      ["House Robber","https://leetcode.com/problems/house-robber/"]
+    ]
+  },
+  {
+    day: "Day 3: Java DSA + Stacks/Queues/LL",
+    videos: [
+      ["Java DSA One Shot","https://www.youtube.com/watch?v=UmnCZ7-9yDY"]
+    ],
+    questions: [
+      ["Container With Most Water","https://leetcode.com/problems/container-with-most-water/"],
+      ["Reverse String","https://leetcode.com/problems/reverse-string/"],
+      ["Evaluate Reverse Polish Notation","https://leetcode.com/problems/evaluate-reverse-polish-notation/"],
+      ["Number of Recent Calls","https://leetcode.com/problems/number-of-recent-calls/"],
+      ["Add Two Numbers","https://leetcode.com/problems/add-two-numbers/"],
+      ["Unique Paths","https://leetcode.com/problems/unique-paths/"]
+    ]
+  },
+  {
+    day: "Day 4: Recursion & Backtracking",
+    videos: [],
+    questions: [
+      ["Subsets","https://leetcode.com/problems/subsets/"],
+      ["Permutations","https://leetcode.com/problems/permutations/"],
+      ["Letter Combinations of a Phone Number","https://leetcode.com/problems/letter-combinations-of-a-phone-number/"],
+      ["Combination Sum","https://leetcode.com/problems/combination-sum/"],
+      ["Word Search","https://leetcode.com/problems/word-search/"],
+      ["Coin Change","https://leetcode.com/problems/coin-change/"]
+    ]
+  },
+  {
+    day: "Day 5: Trees",
+    videos: [],
+    questions: [
+      ["Binary Tree Inorder Traversal","https://leetcode.com/problems/binary-tree-inorder-traversal/"],
+      ["Validate Binary Search Tree","https://leetcode.com/problems/validate-binary-search-tree/"],
+      ["Same Tree","https://leetcode.com/problems/same-tree/"],
+      ["Invert Binary Tree","https://leetcode.com/problems/invert-binary-tree/"],
+      ["Maximum Depth of Binary Tree","https://leetcode.com/problems/maximum-depth-of-binary-tree/"],
+      ["Symmetric Tree","https://leetcode.com/problems/symmetric-tree/"]
+    ]
+  },
+  {
+    day: "Day 6: Dynamic Programming",
+    videos: [],
+    questions: [
+      ["Maximum Subarray","https://leetcode.com/problems/maximum-subarray/"],
+      ["Longest Increasing Subsequence","https://leetcode.com/problems/longest-increasing-subsequence/"],
+      ["Edit Distance","https://leetcode.com/problems/edit-distance/"],
+      ["Decode Ways","https://leetcode.com/problems/decode-ways/"],
+      ["Partition Equal Subset Sum","https://leetcode.com/problems/partition-equal-subset-sum/"],
+      ["Coin Change 2","https://leetcode.com/problems/coin-change-2/"]
+    ]
+  },
+  {
+    day: "Day 7: DBMS & OS Revision",
+    videos: [
+      ["DBMS One Shot","https://www.youtube.com/watch?v=dl00fOOYLOM&t=19642s&pp=ygUbZGJtcyBvbmUgc2hvdCBmb3IgaW50ZXJ2aWV30gcJCc0JAYcqIYzv"],
+      ["OS One Shot","https://www.youtube.com/watch?v=3obEP8eLsCw&pp=ygUZb3Mgb25lIHNob3QgZm9yIGludGVydmlldw%3D%3D"]
+    ],
+    questions: [
+      ["LRU Cache","https://leetcode.com/problems/lru-cache/"],
+      ["Course Schedule","https://leetcode.com/problems/course-schedule/"],
+      ["Search in Rotated Sorted Array","https://leetcode.com/problems/search-in-rotated-sorted-array/"],
+      ["Find Minimum in Rotated Sorted Array","https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"],
+      ["Best Time to Buy and Sell Stock","https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"],
+      ["Longest Palindrome","https://leetcode.com/problems/longest-palindrome/"]
+    ]
+  }
+];
+
+const planner = document.getElementById('planner');
+days.forEach(day => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  let inner = `<h2>${day.day}</h2>`;
+  if(day.videos.length){
+    inner += `<h3>🎥 Video Resources:</h3><ul>`;
+    day.videos.forEach(([title, link]) => {
+      inner += `<li><a href="${link}" target="_blank">${title}</a></li>`;
+    });
+    inner += `</ul>`;
+  }
+  inner += `<h3>🧩 Daily LeetCode Practice:</h3><ul>`;
+  day.questions.forEach(([title, link]) => {
+    inner += `<li><a href="${link}" target="_blank">${title}</a></li>`;
+  });
+  inner += `</ul>`;
+  card.innerHTML = inner;
+  planner.appendChild(card);
+});
+</script>
+</body>
+</html>
